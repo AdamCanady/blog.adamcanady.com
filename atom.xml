@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Adam Canady's blog]]></title>
+  <link href="http://adamcanady.github.io/blog.adamcanady.com/atom.xml" rel="self"/>
+  <link href="http://adamcanady.github.io/blog.adamcanady.com/"/>
+  <updated>2016-01-12T23:55:09-06:00</updated>
+  <id>http://adamcanady.github.io/blog.adamcanady.com/</id>
+  <author>
+    <name><![CDATA[Adam Canady]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+</feed>
