@@ -1,0 +1,270 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Why Does the Development Flow Suck? - Adam Canady's blog</title>
+  <meta name="author" content="Adam Canady">
+
+  
+  <meta name="description" content="After writing about my idea for an Integrated Design-Development Environment, it occurred to me that there&rsquo;s a lot of unnecessary hassle in all &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://adamcanady.github.io/blog.adamcanady.com/blog/2014/12/15/why-does-the-development-flow-suck/">
+  <link href="/blog.adamcanady.com/favicon.png" rel="icon">
+  <link href="/blog.adamcanady.com/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/blog.adamcanady.com/atom.xml" rel="alternate" title="Adam Canady's blog" type="application/atom+xml">
+  <script src="/blog.adamcanady.com/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/blog.adamcanady.com/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-43652025-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/blog.adamcanady.com/">Adam Canady's blog</a></h1>
+  
+    <h2>A Carleton College senior.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/blog.adamcanady.com/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="adamcanady.github.io/blog.adamcanady.com">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/blog.adamcanady.com/">Blog</a></li>
+  <li><a href="/blog.adamcanady.com/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Why Does the Development Flow Suck?</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-12-15T00:03:07-06:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:03 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>After writing about my idea for an <a title="Integrated Design-Development Environment (IDDE)" href="http://blog.adamcanady.com/2013/integrated-design-development-environment/">Integrated Design-Development Environment</a>, it occurred to me that there&rsquo;s a lot of unnecessary hassle in all stages of development and deployment of web applications. It takes hours to get a development environment set up before you can even start working on a specific piece of code. Then, when launch-time arrives, it takes at least as long to get everything in line to launch the thing. While it&rsquo;s not exactly a fair comparison, I could go to one of several dozen hosting companies and launch a WordPress instance for about $5/month. Then, the only remaining step is to actually log in and write content.</p>
+
+<p>Many people are &ldquo;full-stack&rdquo; developers, meaning they&rsquo;d handle everything from launching a VM, configuring a web server, installing dependencies, to putting together the application&rsquo;s backend and frontend. Not to mention some marketing and content creation on top including SEO, social media, and email campaigns.</p>
+
+<p>All that is great, and there&rsquo;s something to be said for knowing everything about your application from top to bottom (or bottom to top, in this case), but it just doesn&rsquo;t have to be that complicated 99% of the time. For the select few who absolutely need to create custom directives in nginx to save nanoseconds on requests - this article is not targeted at you. This is for the people who want to use a well-known stack to rapidly prototype an idea they had for a web app.</p>
+
+<p>We already have have awesome tools like <a href="https://www.docker.io/">Docker</a> and <a href="http://www.vagrantup.com/">Vagrant</a> to ease the transition between development and deployment. Just today, I read about <a href="http://jumpstarter.io/">Jumpstarter</a>, a company that is trying to make a difference in this space. While their efforts are promising, I have yet to see their services in motion. Moreover, they&rsquo;re currently only focused on PHP based webapps like Joomla, WordPress, and Drupal.</p>
+
+<p>Even with these tools, there&rsquo;s still undoubtedly a lot of room for improvement in the field of &ldquo;the flow&rdquo; (as Jumpstarter refers to it). For a new &ldquo;full-service&rdquo; technology to succeed in this area, I think these steps are crucial:</p>
+
+<ol>
+    <li>Focus on a particular flow that is popular enough that it is used by many, but new / unpopular enough that not many people have optimized it yet.</li>
+    <li>Develop a set of web-based tools that makes it easy to collaboratively:
+<ul>
+    <li><strong>Design the application</strong> - wireframes, drawings, etc.</li>
+    <li><strong>Develop and test</strong> - possibly even a hosted test that would allow you to send functional prototypes to testers, clients, colleagues, etc.</li>
+    <li><strong>Deploy.</strong> One click to a live VM - either the user's via SSH or partner with a service like Linode, AWS, or DigitalOcean)</li>
+    <li><strong>Manage versions</strong> - integrate with issue tracking</li>
+</ul>
+</li>
+    <li>Promote, iterate the tools based on feedback
+<ul>
+    <li>Maybe they want a desktop-based environment or mobile admin tools</li>
+</ul>
+</li>
+    <li>Create educational tools that would literally walk someone through creating an application using your flow</li>
+    <li>Add ability to import current (already deployed) projects into 'the flow' - or even just parts of applications, like development and version control so people could take advantage of the tools in a modular fashion.</li>
+</ol>
+
+
+<p>That last point is crucial. If you can show people that they can import their current, super messy projects into your environment, that opens up a whole new world of customers.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Adam Canady</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-12-15T00:03:07-06:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:03 am</span></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://adamcanady.github.io/blog.adamcanady.com/blog/2014/12/15/why-does-the-development-flow-suck/" data-via="adamcanady" data-counturl="http://adamcanady.github.io/blog.adamcanady.com/blog/2014/12/15/why-does-the-development-flow-suck/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog.adamcanady.com/blog/2014/12/02/integrated-design-development-environment-idde/" title="Previous Post: Integrated Design-Development Environment (IDDE)">&laquo; Integrated Design-Development Environment (IDDE)</a>
+      
+      
+        <a class="basic-alignment right" href="/blog.adamcanady.com/blog/2014/12/17/opening-csv-or-excel-files-in-python/" title="Next Post: Opening CSV or Excel files in Python">Opening CSV or Excel files in Python &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog.adamcanady.com/blog/2014/12/21/video-degredation-through-compression/">Video Degradation Through Compression</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog.adamcanady.com/blog/2014/12/20/how-to-migrate-your-wordpress-blog-to-ghost/">How to Migrate Your WordPress Blog to Ghost</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog.adamcanady.com/blog/2014/12/20/why-does-it-seem-like-all-the-threading-projects-in-node-are-abandoned/">Why Does It Seem Like All the Threading Projects in Node Are Abandoned?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog.adamcanady.com/blog/2014/12/17/opening-csv-or-excel-files-in-python/">Opening CSV or Excel Files in Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog.adamcanady.com/blog/2014/12/15/why-does-the-development-flow-suck/">Why Does the Development Flow Suck?</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/adamcanady">@adamcanady</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'adamcanady',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/blog.adamcanady.com/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2016 - Adam Canady -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -5,13 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Blog Archive - Adam Canady's blog</title>
+  <title>Opening CSV or Excel Files in Python - Adam Canady's blog</title>
   <meta name="author" content="Adam Canady">
 
   
-  <meta name="description" content="Blog Archive 2014 Video Degradation Through Compression
-Dec 21 2014 How to Migrate Your WordPress Blog to Ghost
-Dec 20 2014 Why Does It Seem Like &hellip;">
+  <meta name="description" content="A recent project of mine has involved being very flexible with input data, transforming it to a standardized format, and putting it into a database. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +18,7 @@ Dec 20 2014 Why Does It Seem Like &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://adamcanady.github.io/blog.adamcanady.com/blog/archives/">
+  <link rel="canonical" href="http://adamcanady.github.io/blog.adamcanady.com/blog/2014/12/17/opening-csv-or-excel-files-in-python/">
   <link href="/blog.adamcanady.com/favicon.png" rel="icon">
   <link href="/blog.adamcanady.com/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/blog.adamcanady.com/atom.xml" rel="alternate" title="Adam Canady's blog" type="application/atom+xml">
@@ -78,131 +76,86 @@ Dec 20 2014 Why Does It Seem Like &hellip;">
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Blog Archive</h1>
+    
+      <h1 class="entry-title">Opening CSV or Excel Files in Python</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-12-17T00:03:46-06:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:03 am</span></time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives">
 
 
+<div class="entry-content"><p>A recent project of mine has involved being very flexible with input data, transforming it to a standardized format, and putting it into a database. This is commonly referred to as <a href="http://en.wikipedia.org/wiki/Extract,_transform,_load">ETL</a>, or Extract, Transform, Load.</p>
 
-  
-  <h2>2014</h2>
+<p>In doing this project, I&rsquo;ve gotten familiar with an awesome Python Data Analysis framework called <a href="http://pandas.pydata.org/">Pandas</a>. To install Pandas, simply pull one of these in the ol' command line:</p>
 
-<article>
-  
-<h1><a href="/blog.adamcanady.com/blog/2014/12/21/video-degredation-through-compression/">Video Degradation Through Compression</a></h1>
-<time datetime="2014-12-21T00:05:41-06:00" pubdate><span class='month'>Dec</span> <span class='day'>21</span> <span class='year'>2014</span></time>
+<pre><code>sudo pip install pandas
+</code></pre>
 
+<p>Now you&rsquo;re ready to use the pandas library! The basic functionality takes some kind of data input, whether it be CSV, JSON, Excel, or a number of different formats, and converts it into a DataFrame object.</p>
 
-</article>
+<p>This DataFrame object is great because it can be indexed and you can perform all kinds of operations on the data. For my purposes, I only wanted to get all the data into this standardized format, then get it out in dictionary-like objects for each row. I was only concerned with using Excel and CSV files (as this post title indicates), so here&rsquo;s the function I used:</p>
 
+<pre><code>def open_file(filepath):
+    if ".csv" in filename: 
+        doc =  pd.read_csv(filepath)
+    if ".xls" in filename: 
+        doc = pd.read_excel(filepath, 0, index_col=None, na_values=['NA'])
 
+    return [dict([(colname, row[i]) for i,colname in enumerate(doc.columns)]) for row in doc.values]
+</code></pre>
 
-<article>
-  
-<h1><a href="/blog.adamcanady.com/blog/2014/12/20/how-to-migrate-your-wordpress-blog-to-ghost/">How to Migrate Your WordPress Blog to Ghost</a></h1>
-<time datetime="2014-12-20T00:05:06-06:00" pubdate><span class='month'>Dec</span> <span class='day'>20</span> <span class='year'>2014</span></time>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog.adamcanady.com/blog/2014/12/20/why-does-it-seem-like-all-the-threading-projects-in-node-are-abandoned/">Why Does It Seem Like All the Threading Projects in Node Are Abandoned?</a></h1>
-<time datetime="2014-12-20T00:04:16-06:00" pubdate><span class='month'>Dec</span> <span class='day'>20</span> <span class='year'>2014</span></time>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog.adamcanady.com/blog/2014/12/17/opening-csv-or-excel-files-in-python/">Opening CSV or Excel Files in Python</a></h1>
-<time datetime="2014-12-17T00:03:46-06:00" pubdate><span class='month'>Dec</span> <span class='day'>17</span> <span class='year'>2014</span></time>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog.adamcanady.com/blog/2014/12/15/why-does-the-development-flow-suck/">Why Does the Development Flow Suck?</a></h1>
-<time datetime="2014-12-15T00:03:07-06:00" pubdate><span class='month'>Dec</span> <span class='day'>15</span> <span class='year'>2014</span></time>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog.adamcanady.com/blog/2014/12/02/integrated-design-development-environment-idde/">Integrated Design-Development Environment (IDDE)</a></h1>
-<time datetime="2014-12-02T00:02:25-06:00" pubdate><span class='month'>Dec</span> <span class='day'>02</span> <span class='year'>2014</span></time>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog.adamcanady.com/blog/2014/11/25/a-developers-interlude-into-science/">A Developer's Interlude Into Science</a></h1>
-<time datetime="2014-11-25T00:06:44-06:00" pubdate><span class='month'>Nov</span> <span class='day'>25</span> <span class='year'>2014</span></time>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog.adamcanady.com/blog/2014/11/05/whiteboards/">Whiteboards</a></h1>
-<time datetime="2014-11-05T00:01:42-06:00" pubdate><span class='month'>Nov</span> <span class='day'>05</span> <span class='year'>2014</span></time>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog.adamcanady.com/blog/2014/11/01/reverse-ebay/">Reverse eBay</a></h1>
-<time datetime="2014-11-01T01:01:00-05:00" pubdate><span class='month'>Nov</span> <span class='day'>01</span> <span class='year'>2014</span></time>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog.adamcanady.com/blog/2014/10/13/how-i-use-nginx-and-node-dot-js/">How I Use Nginx and Node.js</a></h1>
-<time datetime="2014-10-13T01:00:06-05:00" pubdate><span class='month'>Oct</span> <span class='day'>13</span> <span class='year'>2014</span></time>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog.adamcanady.com/blog/2014/09/13/my-web-stack/">My Web Stack</a></h1>
-<time datetime="2014-09-13T00:58:38-05:00" pubdate><span class='month'>Sep</span> <span class='day'>13</span> <span class='year'>2014</span></time>
-
-
-</article>
-
+<p>You may be thinking &ldquo;what could that possibly do!?!&rdquo; Well, it does quite a few things! If you give it a file path that contains .csv or .xls (which includes .xlsx), it&rsquo;ll open it and put it in a DataFrame. Then it takes the DataFrame and constructs a list of dictionaries, each one containing the headers from the first line of the file and the values from each successive row.</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Adam Canady</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-12-17T00:03:46-06:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:03 am</span></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://adamcanady.github.io/blog.adamcanady.com/blog/2014/12/17/opening-csv-or-excel-files-in-python/" data-via="adamcanady" data-counturl="http://adamcanady.github.io/blog.adamcanady.com/blog/2014/12/17/opening-csv-or-excel-files-in-python/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog.adamcanady.com/blog/2014/12/15/why-does-the-development-flow-suck/" title="Previous Post: Why does the development flow suck?">&laquo; Why does the development flow suck?</a>
+      
+      
+        <a class="basic-alignment right" href="/blog.adamcanady.com/blog/2014/12/20/why-does-it-seem-like-all-the-threading-projects-in-node-are-abandoned/" title="Next Post: Why does it seem like all the threading projects in Node are abandoned?">Why does it seem like all the threading projects in Node are abandoned? &raquo;</a>
+      
+    </p>
+  </footer>
 </article>
 
 </div>

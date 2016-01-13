@@ -1,9 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://adamcanady.github.io/blog.adamcanady.com/blog/2014/12/21/video-degredation-through-compression/</loc>
+    <lastmod>2014-12-21T00:05:41-06:00</lastmod>
+  </url>
+  <url>
+    <loc>http://adamcanady.github.io/blog.adamcanady.com/blog/2014/12/20/how-to-migrate-your-wordpress-blog-to-ghost/</loc>
+    <lastmod>2014-12-20T00:05:06-06:00</lastmod>
+  </url>
+  <url>
+    <loc>http://adamcanady.github.io/blog.adamcanady.com/blog/2014/12/20/why-does-it-seem-like-all-the-threading-projects-in-node-are-abandoned/</loc>
+    <lastmod>2014-12-20T00:04:16-06:00</lastmod>
+  </url>
+  <url>
+    <loc>http://adamcanady.github.io/blog.adamcanady.com/blog/2014/12/17/opening-csv-or-excel-files-in-python/</loc>
+    <lastmod>2014-12-17T00:03:46-06:00</lastmod>
+  </url>
+  <url>
+    <loc>http://adamcanady.github.io/blog.adamcanady.com/blog/2014/12/15/why-does-the-development-flow-suck/</loc>
+    <lastmod>2014-12-15T00:03:07-06:00</lastmod>
+  </url>
+  <url>
+    <loc>http://adamcanady.github.io/blog.adamcanady.com/blog/2014/12/02/integrated-design-development-environment-idde/</loc>
+    <lastmod>2014-12-02T00:02:25-06:00</lastmod>
+  </url>
+  <url>
+    <loc>http://adamcanady.github.io/blog.adamcanady.com/blog/2014/11/25/a-developers-interlude-into-science/</loc>
+    <lastmod>2014-11-25T00:06:44-06:00</lastmod>
+  </url>
+  <url>
+    <loc>http://adamcanady.github.io/blog.adamcanady.com/blog/2014/11/05/whiteboards/</loc>
+    <lastmod>2014-11-05T00:01:42-06:00</lastmod>
+  </url>
+  <url>
+    <loc>http://adamcanady.github.io/blog.adamcanady.com/blog/2014/11/01/reverse-ebay/</loc>
+    <lastmod>2014-11-01T01:01:00-05:00</lastmod>
+  </url>
+  <url>
+    <loc>http://adamcanady.github.io/blog.adamcanady.com/blog/2014/10/13/how-i-use-nginx-and-node-dot-js/</loc>
+    <lastmod>2014-10-13T01:00:06-05:00</lastmod>
+  </url>
+  <url>
+    <loc>http://adamcanady.github.io/blog.adamcanady.com/blog/2014/09/13/my-web-stack/</loc>
+    <lastmod>2014-09-13T00:58:38-05:00</lastmod>
+  </url>
+  <url>
     <loc>http://adamcanady.github.io/blog.adamcanady.com/blog/archives/</loc>
   </url>
   <url>
     <loc>http://adamcanady.github.io/blog.adamcanady.com/</loc>
+  </url>
+  <url>
+    <loc>http://adamcanady.github.io/blog.adamcanady.com/posts/2/</loc>
   </url>
 </urlset>

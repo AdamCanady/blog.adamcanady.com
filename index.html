@@ -9,7 +9,7 @@
   <meta name="author" content="Adam Canady">
 
   
-  <meta name="description" content=" Blog Archives Recent Posts GitHub Repos Status updating... @adamcanady on GitHub ">
+  <meta name="description" content="Lossy encodings of media have tons of advantages - smaller file sizes, more portability, decreased bandwidth usage, faster buffering, etc. But one of &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,7 +78,576 @@
       <div class="blog-index">
   
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog.adamcanady.com/blog/2014/12/21/video-degredation-through-compression/">Video Degradation Through Compression</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-12-21T00:05:41-06:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>12:05 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Lossy encodings of media have tons of advantages - smaller file sizes, more portability, decreased bandwidth usage, faster buffering, etc. But one of the oft-tossed-away downsides is that videos lose a ton of quality upon encoding into lossy codecs.</p>
+
+<p>To demonstrate this, here are a couple videos that show a source file undergoing compression on multiple iterations. It&rsquo;s easy to see the degredation of quality even after the first couple iterations</p>
+
+<h4>Uploading to YouTube 1000 times</h4>
+
+<iframe width="420" height="315" src="//www.youtube.com/embed/icruGcSsPp0" frameborder="0" allowfullscreen></iframe>
+
+
+<h4>Dubbing over a VHS tape 25 times</h4>
+
+<iframe width="420" height="315" src="//www.youtube.com/embed/mES3CHEnVyI" frameborder="0" allowfullscreen></iframe>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog.adamcanady.com/blog/2014/12/20/how-to-migrate-your-wordpress-blog-to-ghost/">How to Migrate Your WordPress Blog to Ghost</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-12-20T00:05:06-06:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:05 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>It&rsquo;s very straightforward to migrate your WordPress blog to a Ghost blog. First, we&rsquo;ll start off by exporting everything out of WP, then we&rsquo;ll set up Ghost, import everything, and finally tweak the setup so our old URLs are supported.</p>
+
+<h3>Get data out of WordPress</h3>
+
+<ol>
+<li>Install the Disqus plugin and export your comments to Disqus.</li>
+<li>Install the Ghost plugin and obtain a .json file containing all of your post content and metadata.</li>
+</ol>
+
+
+<h3>Set up Ghost</h3>
+
+<ol>
+<li>Provision a Ghost installation. Since Ghost is an early-stage project, it&rsquo;s easiest to start from a pre-setup image, like the one offered by <a href="http://www.digitalocean.com">DigitalOcean</a>.</li>
+<li>Log into Ghost by navigating to <a href="http://your-ip/ghost">http://your-ip/ghost</a> and creating an account. More info on this process <a href="https://www.digitalocean.com/community/articles/how-to-use-the-digitalocean-ghost-application">here</a>.</li>
+</ol>
+
+
+<h3>Move everything over</h3>
+
+<ol>
+<li>Import your .json export from WordPress into Ghost by navigating to <a href="http://your-ip/ghost/debug">http://your-ip/ghost/debug</a> and clicking import. Keep in mind, this will overwrite your login information with the root user used in WordPress.</li>
+<li>Add Ghost to your theme by adding <code>&lt;div id="disqus_thread"&gt;&lt;/div&gt;</code> to your theme&rsquo;s post.hbs anywhere after ``. This will vary by theme.</li>
+</ol>
+
+
+<h3>Customize previous URLs</h3>
+
+<p>This is probably the trickiest part of the migration. Since Ghost is in very early development. We&rsquo;ll need to add a redirection that follows our previous scheme. For me, I added the following code to line core/server.js in line 371 after the block containing the <code>// ### Frontend routes</code>:</p>
+
+<pre><code>server.get(/^\/(2013\/?).*/, 
+    function redirect(req, res) {  
+        res.redirect(301, req.url.substr(5));
+    }
+);
+</code></pre>
+
+<p>Your mileage may vary - mine was easier because all of my posts in WordPress were preceded by <code>/2013/blog-permalink</code>.</p>
+
+<p>Shoutout to these posts for help transferring my blog:</p>
+
+<ul>
+<li><a href="http://ghost.pellegrom.me/adding-disqus-comments-to-ghost/">Adding Disqus to Ghost - Gilbert Pellegrom</a></li>
+<li><a href="http://jegtnes.co.uk/how-to-implement-url-redirection-in-ghost-0-3/">URL Redirection in Ghost - Alex Jegtnes</a></li>
+<li><a href="https://www.digitalocean.com/community/articles/how-to-use-the-digitalocean-ghost-application">Using Ghost with DigitalOcean - DigitalOcean</a></li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog.adamcanady.com/blog/2014/12/20/why-does-it-seem-like-all-the-threading-projects-in-node-are-abandoned/">Why Does It Seem Like All the Threading Projects in Node Are Abandoned?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-12-20T00:04:16-06:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:04 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I was recently looking for a threading solution in Node and, to my surprise, many of the projects have been abandoned! Looking at <a href="https://github.com/xk/node-threads-a-gogo">Threads a go go</a>, and <a href="https://github.com/audreyt/node-webworker-threads">webworker-threads</a>, for both of which the last commit was at least 6 months ago. It seems like there&rsquo;s no demand for a solution to running long running or blocking tasks in node (aside from fibers or child_process).</p>
+
+<p>I can&rsquo;t even get Threads a go go to install with the latest version of Node (and haven&rsquo;t been able to do so for over 4 months).</p>
+
+<p>Is it really the case that these tools are not necessary? If so, what solutions have people found for handling long processes?</p>
+
+<p><strong>Update:</strong> Even <a href="https://github.com/laverdet/node-fibers">fibers</a> seems to have gone a long time without an update.</p>
+
+<p><strong>Update 2:</strong> Welcome HN folks! Discussion <a href="https://news.ycombinator.com/item?id=6834179">here</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog.adamcanady.com/blog/2014/12/17/opening-csv-or-excel-files-in-python/">Opening CSV or Excel Files in Python</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-12-17T00:03:46-06:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:03 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A recent project of mine has involved being very flexible with input data, transforming it to a standardized format, and putting it into a database. This is commonly referred to as <a href="http://en.wikipedia.org/wiki/Extract,_transform,_load">ETL</a>, or Extract, Transform, Load.</p>
+
+<p>In doing this project, I&rsquo;ve gotten familiar with an awesome Python Data Analysis framework called <a href="http://pandas.pydata.org/">Pandas</a>. To install Pandas, simply pull one of these in the ol' command line:</p>
+
+<pre><code>sudo pip install pandas
+</code></pre>
+
+<p>Now you&rsquo;re ready to use the pandas library! The basic functionality takes some kind of data input, whether it be CSV, JSON, Excel, or a number of different formats, and converts it into a DataFrame object.</p>
+
+<p>This DataFrame object is great because it can be indexed and you can perform all kinds of operations on the data. For my purposes, I only wanted to get all the data into this standardized format, then get it out in dictionary-like objects for each row. I was only concerned with using Excel and CSV files (as this post title indicates), so here&rsquo;s the function I used:</p>
+
+<pre><code>def open_file(filepath):
+    if ".csv" in filename: 
+        doc =  pd.read_csv(filepath)
+    if ".xls" in filename: 
+        doc = pd.read_excel(filepath, 0, index_col=None, na_values=['NA'])
+
+    return [dict([(colname, row[i]) for i,colname in enumerate(doc.columns)]) for row in doc.values]
+</code></pre>
+
+<p>You may be thinking &ldquo;what could that possibly do!?!&rdquo; Well, it does quite a few things! If you give it a file path that contains .csv or .xls (which includes .xlsx), it&rsquo;ll open it and put it in a DataFrame. Then it takes the DataFrame and constructs a list of dictionaries, each one containing the headers from the first line of the file and the values from each successive row.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog.adamcanady.com/blog/2014/12/15/why-does-the-development-flow-suck/">Why Does the Development Flow Suck?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-12-15T00:03:07-06:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:03 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>After writing about my idea for an <a title="Integrated Design-Development Environment (IDDE)" href="http://blog.adamcanady.com/2013/integrated-design-development-environment/">Integrated Design-Development Environment</a>, it occurred to me that there&rsquo;s a lot of unnecessary hassle in all stages of development and deployment of web applications. It takes hours to get a development environment set up before you can even start working on a specific piece of code. Then, when launch-time arrives, it takes at least as long to get everything in line to launch the thing. While it&rsquo;s not exactly a fair comparison, I could go to one of several dozen hosting companies and launch a WordPress instance for about $5/month. Then, the only remaining step is to actually log in and write content.</p>
+
+<p>Many people are &ldquo;full-stack&rdquo; developers, meaning they&rsquo;d handle everything from launching a VM, configuring a web server, installing dependencies, to putting together the application&rsquo;s backend and frontend. Not to mention some marketing and content creation on top including SEO, social media, and email campaigns.</p>
+
+<p>All that is great, and there&rsquo;s something to be said for knowing everything about your application from top to bottom (or bottom to top, in this case), but it just doesn&rsquo;t have to be that complicated 99% of the time. For the select few who absolutely need to create custom directives in nginx to save nanoseconds on requests - this article is not targeted at you. This is for the people who want to use a well-known stack to rapidly prototype an idea they had for a web app.</p>
+
+<p>We already have have awesome tools like <a href="https://www.docker.io/">Docker</a> and <a href="http://www.vagrantup.com/">Vagrant</a> to ease the transition between development and deployment. Just today, I read about <a href="http://jumpstarter.io/">Jumpstarter</a>, a company that is trying to make a difference in this space. While their efforts are promising, I have yet to see their services in motion. Moreover, they&rsquo;re currently only focused on PHP based webapps like Joomla, WordPress, and Drupal.</p>
+
+<p>Even with these tools, there&rsquo;s still undoubtedly a lot of room for improvement in the field of &ldquo;the flow&rdquo; (as Jumpstarter refers to it). For a new &ldquo;full-service&rdquo; technology to succeed in this area, I think these steps are crucial:</p>
+
+<ol>
+    <li>Focus on a particular flow that is popular enough that it is used by many, but new / unpopular enough that not many people have optimized it yet.</li>
+    <li>Develop a set of web-based tools that makes it easy to collaboratively:
+<ul>
+    <li><strong>Design the application</strong> - wireframes, drawings, etc.</li>
+    <li><strong>Develop and test</strong> - possibly even a hosted test that would allow you to send functional prototypes to testers, clients, colleagues, etc.</li>
+    <li><strong>Deploy.</strong> One click to a live VM - either the user's via SSH or partner with a service like Linode, AWS, or DigitalOcean)</li>
+    <li><strong>Manage versions</strong> - integrate with issue tracking</li>
+</ul>
+</li>
+    <li>Promote, iterate the tools based on feedback
+<ul>
+    <li>Maybe they want a desktop-based environment or mobile admin tools</li>
+</ul>
+</li>
+    <li>Create educational tools that would literally walk someone through creating an application using your flow</li>
+    <li>Add ability to import current (already deployed) projects into 'the flow' - or even just parts of applications, like development and version control so people could take advantage of the tools in a modular fashion.</li>
+</ol>
+
+
+<p>That last point is crucial. If you can show people that they can import their current, super messy projects into your environment, that opens up a whole new world of customers.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog.adamcanady.com/blog/2014/12/02/integrated-design-development-environment-idde/">Integrated Design-Development Environment (IDDE)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-12-02T00:02:25-06:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2014</span></span> <span class='time'>12:02 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Ever since my freshman year Data Structures class when I was introduced to interfaces in Java and the Eclipse IDE, I could instantly see the power behind abstracting how code works behind the scenes. You could develop now with the belief that certain functions did what they said they would, only to actually implement them later or use them out of a library. This is the kind of forward-thinking that will be taken one more step with the IDDE.</p>
+
+<p>As I was laying out my most recent project, I was using a <a title="Whiteboards" href="http://blog.adamcanady.com/2013/whiteboards/">whiteboard</a>, however, I wondered if that was the most efficient way to organize my thoughts. It would at least be a two-medium process - I&rsquo;d have to scrawl everything onto the whiteboard, then translate the visual thoughts into pieces of code that actually make the application tick.</p>
+
+<p>What if, instead of the two-medium process, there was a web app that enabled real-time collaboration for wireframing applications? Not wireframing in the traditional sense - it could start off as a purely visual process where a designer could lay out every view of the application that will be a part of the final product. Then developers could come in and decide how data would be inserted into the views, where it was stored behind the scenes, how APIs hooked up to sync external data, and handle routing between the different views.</p>
+
+<p>It could even go so far as to allow devs to lay out the functions they&rsquo;ll need to write, what parameters they&rsquo;ll take and what they&rsquo;ll return, and split everything up into appropriate files, organizing the codebase as development occurred.</p>
+
+<p>The wireframe could evolve with the application - allowing designers to move buttons around, change the color scheme, and add new visual features while devs could implement the features as they were added.</p>
+
+<p>Perhaps the IDDE would benefit both one-person ventures and massive development companies alike.</p>
+
+<p>If, in a company, the design team was separated from the development team, the designers should be able to design what they want as they are the experts in art and user experience. Similarly, the developers have experience in implementation and deployment, so they should be able to handle the technical aspects. It&rsquo;s not hard to see an IDDE creating a massive speed increase in update/bug-fixing time as one party would not have to wait for the other to complete whole chunks of changes, then become overwhelmed with the final product.</p>
+
+<p>On the contrary, if a company had integrated designers and devs or single proprietor were to brave a project alone, she could have all of the work in one place, giving her a clear picture of what needs to be completed before launch to achieve the desired functionality.</p>
+
+<p>Since the IDDE runs on a web app, it might even be possible to export Vagrant-style VMs for easy and surefire deployment. Batteries included, no assembly required.</p>
+
+<p>Finally, the IDDE could be very modular. Perhaps it would suit a person only like to use the design module and share portions of it with hired development contractors.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog.adamcanady.com/blog/2014/11/25/a-developers-interlude-into-science/">A Developer's Interlude Into Science</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-11-25T00:06:44-06:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>25</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:06 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><em>This post is a work in progress</em></p>
+
+<p>Science is great. It&rsquo;s awesome to see the ways people use math to describe the world and how clever abstractions help us understand nature better.</p>
+
+<p>This term, I&rsquo;m in a couple physics courses and a chemistry course. As someone whose courseload has been dominated by computer science courses, it&rsquo;s hard not to relate everything back to CS.</p>
+
+<p>A few notable examples below.</p>
+
+<h2>Chemistry</h2>
+
+<h3>Chemical Naming</h3>
+
+<p>Ever since I learned how to name molecules according to some basic IUPAC rules, I really have wanted to write a program to represent molecules as data and figure out how to name them according to the rules. This is one of those things where there is a well defined written algorithm for it, but it may or may not have been implemented yet. My professor indicated that a program called ChemDraw can do this, but sometimes/often gets the name wrong.</p>
+
+<h3>Chemical Structure Analysis</h3>
+
+<p>Using NMR and IR spectroscopy, we can determine a lot about a molecule&rsquo;s structure. Each time I sit down with a problem set or an exam question, it&rsquo;s easy to start applying the algorithm I&rsquo;ve developed</p>
+
+<p>I have some thoughts on how this could be automated. Perhaps if you had a sufficiently large training set, it would be possible to machine learn strucutres for compounds.</p>
+
+<!--### Chemical Reactions-->
+
+
+<h2>Physics</h2>
+
+<h3>Visualization of equations</h3>
+
+<p>One of the things I really detest about the way physics is currently taught is that the student is just spoonfed a few equations, then told to solve some problems. I feel like that&rsquo;s a doable way to learn, but it&rsquo;s suboptimal because the student isn&rsquo;t really invested in the problem. An alternate teaching style would be to give a student sufficient instrumentation such that they could come up with a solution to describe a phenomenon like simple harmonic oscillation on it&rsquo;s own, but in practice this isn&rsquo;t really feasible due to time constraints. That also seems like a suboptimal solution.</p>
+
+<p>I wonder if there&rsquo;s some middleground, where computer simulations (D3 + worrydream.com&rsquo;s work) could help manipulate a system in real time to give a student intuition about what&rsquo;s going on behind the scenes.</p>
+
+<p>Side note: one thing I&rsquo;ve found more and more is that people get really caught up in notation and it&rsquo;s likely that use of better notation would lead to better understanding of a system. In my opinion, computer scientists are better at naming variables (even though, according to XKCD, it&rsquo;s the hardest problem in comp sci). When I see an omega on the board, that doesn&rsquo;t really symbolize angular velocity so much as the variable name angular_velocity would. Doing math in programming languages is easier and more clear despite the excess activiation energy required to type the variable name.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog.adamcanady.com/blog/2014/11/05/whiteboards/">Whiteboards</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-11-05T00:01:42-06:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:01 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><em>Note: this post started off as a contrast between real whiteboards and digital whiteboards, then I got distracted by a specific idea for code organization. I split this post up into two separate ones since the conversations were distinct enough. You can find the code organization piece <a title="Integrated Design-Development Environment (IDDE)" href="http://blog.adamcanady.com/2013/integrated-design-development-environment/">here</a>. Hope you don&rsquo;t mind!</em></p>
+
+<p>Whiteboards are awesome because a bunch of people can get together and connect their thoughts in an extremely visual manner. The only downside is that they require folks to be in the same room as one another to communicate clearly.</p>
+
+<p>After having used a few online whiteboards that are supposed to serve as a substitute for the real thing, I wasn&rsquo;t really impressed. There still felt like there was a disconnect in the input devices. On a real board, it&rsquo;s so instantaneous to precisely draw with a marker, be able to erase it by wiping bits away with the palm or forearm (or a cloth if you're <em>that</em> guy), however, it seems as if the mouse is far inferior.</p>
+
+<p>Perhaps its because I was taught how to write with a pen-like device instead of a mouse-like device when I was in elementary school? To avoid another argument - it just isn&rsquo;t as quick to switch between the keyboard and the mouse to be able to write labels and draw different shapes.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog.adamcanady.com/blog/2014/11/01/reverse-ebay/">Reverse eBay</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-11-01T01:01:00-05:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>1:01 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I recently saw this idea on <a href="http://www.reddit.com/r/CrazyIdeas/comments/1epcbz/a_reverseebay_buyers_post_something_they_are/">r/CrazyIdeas</a>:</p>
+
+<blockquote><strong>A reverse-ebay: Buyers post something they are interested in buying, and vendors compete to offer the lowest bid.</strong>
+
+Internet shopping would suddenly get so much easier--instead of searching different websites and online markets for the lowest price on an item, you could make a single post and have the lowest price come to you. Additionally, it could be easier to find obscure items. No doubt it could be linked to ebay, amazon, etc. to connect potential buyers and sellers.</blockquote>
+
+
+<p>An interesting idea, so I thought about how it could be implemented.</p>
+
+<p>Essentially, this is <em>almost</em> like creating a service that would organize group buys. Here are some quick thoughts:</p>
+
+<ul>
+    <li><strong>The service would need to demonstrate a significant level of demand.</strong> Otherwise, it's tough for suppliers to offer the same type of discount since they're only incentivised by one sale.</li>
+    <li><strong>Suppliers may want different prices and quantities depending on how large the auction became.</strong> Some may be able to supply a lot more than others who would supply less but would bid lower. In this case suppliers must be able to bid their maximum quantity offered and their minimum price.</li>
+    <li><strong>Auctions would have to be limited by time.</strong> Perhaps there would be a period of time where buyers could sign up, then a period of time where suppliers could sign up</li>
+    <li><strong>Suppliers would have to be confident demanders would pay up.</strong> If 500 people signed up to buy garden tools, you better be sure a high percentage of them will actually buy. Perhaps they would have to put their money down ahead of time at some predetermined market value, then they get the difference back between the market value and their 'wholesale' final price. If they decide to jump ship, there could be a flat 5% fee they'd get tagged with.</li>
+    <li><strong>Distribution would be difficult. </strong>The supplier would have to ship to, say, 500 different people, which would be a hassle. If the site hosting these transactions got big enough, it's reasonable that they could act as a distribution center. The auction-winning, lowest-bidding supplier could send their goods to one location, and the distribution center could ensure it's sent out to demanders.</li>
+    <li><strong>This service may be an inefficient intermediate step towards something more continuous.</strong> Demand is not guaranteed and comes in big chunks, which represents an inefficiency as some suppliers might like to ship continuously. Some suppliers would probably like to say that they can supply 500 units/week and have that order fulfilled week over week.</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog.adamcanady.com/blog/2014/10/13/how-i-use-nginx-and-node-dot-js/">How I Use Nginx and Node.js</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-10-13T01:00:06-05:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>1:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>As I mentioned in the piece on <a href="http://blog.adamcanady.com/2013/my-web-stack/">my web stack</a>, I currently use Nginx to manage requests on a server and set up different hosts. Here&rsquo;s how I do it.</p>
+
+<p><a href="http://nginx.org/">Nginx</a> is great because it&rsquo;s extremely fast and very configurable. Here, I&rsquo;ll share a basic configuration that works well for me to host a few sites on the same VPS.</p>
+
+<p>Basically the idea is to figure out where the request is coming from, then direct it to the correct application (I run Node apps on different ports).</p>
+
+<h2>Defining the server group</h2>
+
+
+<p>First off, we have to tell nginx where our Node application is running.</p>
+
+<pre><code> upstream subdomain.domain.com {
+     server 127.0.0.1:3000;
+ }
+</code></pre>
+
+<h2>Defining the server itself</h2>
+
+
+<p>Now we define the server, telling it where to listen, what to listen for, and where to direct requests. In the case of node, we want it to pass requests off via proxy to the server we defined earlier.</p>
+
+<pre><code>server {
+    listen 0.0.0.0:80;
+    server_name subdomain.example.com;
+    access_log /var/log/nginx/subdomain.example.com.log;
+
+    # tell nginx to forward all requests to the proxy
+    location / {
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+        proxy_set_header X-NginX-Proxy true;
+
+        proxy_pass http://subdomian.example.com/;
+        proxy_redirect off;  
+    }
+}
+</code></pre>
+
+<p>And that&rsquo;s all you need to direct traffic to a Node server! Though if you&rsquo;d like Nginx to handle static files with it&rsquo;s insane speed, stick around.</p>
+
+<h2>Handling static files</h2>
+
+
+<p>If you want to get fancy, you can have Nginx handle static traffic instead of Node. Just place something like this below the previous location block.</p>
+
+<pre><code>location ~* ^.+\.(jpg|jpeg|gif|png|ico|css|zip|tgz|gz|rar|bz2|pdf|txt|tar|wav|bmp|rtf|js|flv|swf|html|htm)$ {
+    root /var/www/subdomain.example.com/public;
+}
+</code></pre>
+
+<h2>Putting it all together</h2>
+
+
+<p>Now that everything is configured correctly, we need to figure out how to put it in the right place to make it effective. I&rsquo;ll assume you already have nginx installed on your machine. First, we&rsquo;ll need to create a configuration file in the <code>/etc/nginx/sites-available/</code> directory. For example, my file is located here: <code>/etc/nginx/sites-available/example.com</code></p>
+
+<p>This whole file looks like this:</p>
+
+<pre><code>upstream subdomain.domain.com {
+    server 127.0.0.1:3000;
+}
+
+server {
+    listen 0.0.0.0:80;
+    server_name subdomain.example.com;
+    access_log /var/log/nginx/subdomain.example.com.log;
+
+    # tell nginx to forward all requests to the proxy
+    location / {
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+        proxy_set_header X-NginX-Proxy true;
+
+        proxy_pass http://subdomian.example.com/;
+        proxy_redirect off;
+    }
+
+    location ~* ^.+\.(jpg|jpeg|gif|png|ico|css|zip|tgz|gz|rar|bz2|pdf|txt|tar|wav|bmp|rtf|js|flv|swf|html|htm)$ {
+        root /var/www/subdomain.example.com/public;
+    }
+ }
+</code></pre>
+
+<p>Now that we have this site in our sites-available folder, we must tell nginx that it&rsquo;s enabled as well. The easiest way to do this is to create a system link to the file in the sites-available folder in our sites-enabled folder, like this: <code>ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled/example.com</code></p>
+
+<p>Finally, we&rsquo;ll need to restart nginx like this: <code>service nginx restart</code>
+and everything should work once you route the DNS A record of your domain to this IP address and wait for the changes to propagate through DNS (usually takes an hour, but can take up to 48)</p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
+    
+      <a class="prev" href="/blog.adamcanady.com/posts/2">&larr; Older</a>
     
     <a href="/blog.adamcanady.com/blog/archives">Blog Archives</a>
     
@@ -89,6 +658,26 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog.adamcanady.com/blog/2014/12/21/video-degredation-through-compression/">Video Degradation Through Compression</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog.adamcanady.com/blog/2014/12/20/how-to-migrate-your-wordpress-blog-to-ghost/">How to Migrate Your WordPress Blog to Ghost</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog.adamcanady.com/blog/2014/12/20/why-does-it-seem-like-all-the-threading-projects-in-node-are-abandoned/">Why Does It Seem Like All the Threading Projects in Node Are Abandoned?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog.adamcanady.com/blog/2014/12/17/opening-csv-or-excel-files-in-python/">Opening CSV or Excel Files in Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog.adamcanady.com/blog/2014/12/15/why-does-the-development-flow-suck/">Why Does the Development Flow Suck?</a>
+      </li>
     
   </ul>
 </section>
